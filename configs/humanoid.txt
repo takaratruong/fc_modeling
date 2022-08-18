@@ -1,0 +1,11 @@
+project_name = fc_model
+env = humanoid_treadmill
+
+hidden_dim = [128, 128]
+num_frc = 18
+num_epochs = 40000
+batch_size = 500
+mocap_path = '/home/takaraet/fc_modeling/mocap/mocap_data/humanoid/Subject2/'
+
+gait_ref_file = environments/humanoid/subject1_walk_treadmill.txt
+treadmill_velocity = .8

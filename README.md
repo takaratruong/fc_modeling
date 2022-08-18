@@ -1,1 +1,1 @@
-# fc_modeling
+# Foot Contact Modeling: produce accurate GRF/M
