@@ -7,13 +7,14 @@ p = configargparse.ArgParser()
 p.add('-c', '--config', required=True, is_config_file=True, help='config file path')
 p.add('-n', '--exp_name', type=str, default='default_exp_name')
 p.add('--project_name', type=str, required=True)
+p.add('--alg', type=str, default='ppo', help='ppo or amp')
 
 p.add('--log_dir', type=str, default='results/')
 
 p.add('--seed', type=int, default=2)
 p.add('--wandb',  action='store_true')
 
-p.add('--num_frc', type=int, required=True)
+# p.add('--num_frc', type=int, required=True)
 p.add('--hidden_dim', type=int, action='append')
 p.add('--num_epochs', type=int, default=1000)
 p.add('--batch_size', type=int, default=500)

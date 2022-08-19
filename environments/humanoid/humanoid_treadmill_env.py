@@ -118,9 +118,8 @@ class HumanoidTreadmillEnv(mujoco_env_humanoid.MujocoEnv, utils.EzPickle):
 
         orient_reward = np.sum((orient_ref - orient_obs) ** 2) + 0.1*np.sum((self.sim.data.qvel[3:6]) ** 2)
         orient_reward = np.exp(-1*orient_reward)
-
+        # reward = self.args.rot_weight * orient_reward + self.args.jnt_weight * joint_reward + self.args.pos_weight * pos_reward
         reward = orient_reward * joint_reward * pos_reward * .1
-
         return reward
 
     @property
@@ -133,7 +132,10 @@ class HumanoidTreadmillEnv(mujoco_env_humanoid.MujocoEnv, utils.EzPickle):
     def get_obs(self):
         if self.phase <= .5:
             position = self.sim.data.qpos.flat.copy()
-            position = position[:-1]  # exclude treadmill
+            position = position[:-1] # exclude treadmill
+            position[0] *= 10
+            position[1] *= 10
+            position[2] *= 10
 
             velocity = np.clip(self.sim.data.qvel.flat.copy()[:-1], -1000, 1000)
             velocity[0] *= 10
@@ -143,8 +145,11 @@ class HumanoidTreadmillEnv(mujoco_env_humanoid.MujocoEnv, utils.EzPickle):
             observation = np.concatenate((position, velocity / 10, np.array([self.phase]))).ravel()
         else:
             position = self.sim.data.qpos.flat.copy()
-            position = position[:-1]  # exclude treadmill
+            position = position[:-1] # exclude treadmill
             flipped_pos = flip_position(position)
+            flipped_pos[0] *= 10
+            flipped_pos[1] *= 10
+            flipped_pos[2] *= 10
 
             velocity = np.clip(self.sim.data.qvel.flat.copy()[:-1], -1000, 1000)
             flipped_vel = flip_velocity(velocity)

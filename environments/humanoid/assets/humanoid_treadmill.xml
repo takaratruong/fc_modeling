@@ -103,6 +103,7 @@
                         <joint name="left_ankle_z" axis="0 0 1" pos="0 0 0" range="-1.0 1.0" type="hinge"/>
                         <site name="joint_left_ankle" pos="0 0 0" size="0.04" type="sphere"/>
                         <geom name="left_ankle" mass="1.0" pos="0.045 0 -0.0225" size="0.0885 0.045 0.0275" type="box"/>
+
                     </body>
                 </body>
             </body>
@@ -126,6 +127,12 @@
         <exclude body1="right_elbow" body2="right_shoulder"/>
         <exclude body1="left_elbow" body2="left_shoulder"/>
     </contact>
+
+
+<!--    <sensor>-->
+<!--        <force name="joint_left_ankle" site="joint_left_ankle"/>-->
+<!--    </sensor>-->
+
 
     <actuator>
         <motor gear="200" joint="chest_x" name="chest_x"/>

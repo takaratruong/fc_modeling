@@ -1,0 +1,36 @@
+## Logistics ##
+env = humanoid
+wandb = True
+project_name = humanoid
+alg = ppo
+
+## Environment and Training Parameters ##
+vid_freq = 200
+
+frame_skip = 4
+num_envs = 25
+max_ep_time = 10
+num_steps = 100
+
+
+## Gait Parameters ##
+gait_ref_file = environments/humanoid/subject1_walk_treadmill.txt
+gait_cycle_vel = 1
+gait_cycle_time = 1.26654  # 38*0.03333
+
+## Reward and Action Parameters: ##
+rot_weight = .3
+jnt_weight = .4
+pos_weight = .3
+phase_action_mag = .04
+
+## Perturbation Parameters: ##
+# const_perturbation = True
+# rand_perturbation = True
+
+# perturbation_force = 132
+# min_perturbation_force_mag = 90
+
+# perturbation_dir = 1
+# perturbation_delay = 4
+

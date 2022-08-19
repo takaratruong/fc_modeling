@@ -28,8 +28,10 @@ class AMPVideoCallback:
     def save_video(self, model):
         for _ in range(3):
             obs = self.vid_env.reset()
+
             done = False
             while not done:
+                #action = [self.vid_env.env.action_space.sample()]
                 action = model.sample_best_actions(torch.tensor(obs).float().cuda()).detach().cpu().numpy()
                 obs, _, done, _ = self.vid_env.step(action)
 
